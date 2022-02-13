@@ -1,0 +1,51 @@
+.float_button{
+
+    text-decoration: none;
+    width: 70px;
+    height: 70px;
+    background: rgb(55, 163, 96);
+    /* display: flex; */
+    /* justify-content: center; */
+    border-radius: 40%;
+    font-size: 40px;
+    color: black;
+    text-align: center;
+    /* align-items: center; */
+    right: 20px;
+    bottom: 20px;
+    position: fixed;
+}
+.float_button:hover{
+
+    background: rgb(20, 121, 58);
+    color: white;
+}
+.form_con{
+
+    margin: 30px;
+    border-radius: 30px;
+    width: 50%;
+    /* margin: 0 auto; */
+    background-color: rgb(223, 223, 223);
+    padding-top: 50px;
+    
+}
+.form,h2{
+
+    margin-left: 50px;
+    margin-right: 50px;
+
+}
+label{
+    font-weight: bold;
+    margin:5px;
+}
+input{
+    margin:5px;
+    background-color: rgb(255, 255, 255);
+    /* width: 50px; */
+}
+.form-group{
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
