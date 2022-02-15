@@ -1,69 +1,106 @@
-<!doctype html>
+<?php
+
+    include "dbConnection.php";
+?>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
-    <title>Hello, world!</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>Document</title>
 </head>
 
 <body>
 
 
-    <!-- Optional JavaScript; choose one of the two! -->
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a style="font-size: 26px;" class="navbar-brand" href="#">eLearning</a>
+    <!------ Include the above in your HEAD tag ---------->
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Courses</a>
-                    </li>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
 
-                    <li class="nav-item ">
-                        <a class="nav-link ">Feedbacks</a>
-                    </li>
-                </ul>
-                <form class="d-flex">
-                    <div class="dropdown">
-                        <button class="btn btn-danger dropdown-toggle mx-2" type="button" id="dropdownMenuButton1"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Profile
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" href="#">My </a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </div>
 
-                    <button class="btn btn-outline-success mx-3" type="submit">LogIn</button>
-                    <button class="btn btn-outline-success" type="submit">SignUp</button>
-                </form>
-            </div>
-        </div>
-    </nav>
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"></script>
+    <div class="container my-4">
 
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-    -->
+
+
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <header class="card-header">
+                        <a href="index.php" class="float-right btn btn-outline-primary mt-1">Home</a>
+                        <h4 class="card-title mt-2">Sign In</h4>
+                    </header>
+                    <article class="card-body">
+                        <form method="POST">
+                          
+                            <div class="form-group">
+                                <label>Email address</label>
+                                <input name ="email" type="email" class="form-control" placeholder="Email">
+                                <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+                            </div> <!-- form-group end.// -->
+
+
+                            <div class="form-group">
+                                <label>Password</label>
+                                <input name="pass" class="form-control" type="password" placeholder="Password">
+                            </div> <!-- form-group end.// -->
+                            <div class="form-group">
+                                <button name="logIN" type="submit" class="btn btn-primary btn-block"> Log In </button>
+                            </div> <!-- form-group// -->
+                            <small class="text-muted">By clicking the 'Sign Up' button, you confirm that you accept our <br> Terms of use and Privacy Policy.</small>
+                        </form>
+                    </article> <!-- card-body end .// -->
+                    <div class="border-top card-body text-center">Haven't any account? <a href="signUp.php">Sign Up</a></div>
+                </div> <!-- card.// -->
+            </div> <!-- col.//-->
+
+        </div> <!-- row.//-->
+
+
+    </div>
+    <!--container end.//-->
+ 
+<?php
+
+
+        session_start();
+        if(isset($_POST["logIN"]))
+        {
+            // echo "ok";
+          
+            $query  = "select S_Pass from student student where S_Email =  '$_POST[email]' and S_Pass= $_POST[pass]" ;
+            $rs = mysqli_query($conn,$query);
+            $num_row = mysqli_num_rows($rs);
+            if($num_row>0)
+            {
+                ?>
+                <script text="text/javascript">
+                    
+                    alert("Successfully LogIN!");
+                    window.location.href="userIndex.php";
+                    </script>
+                <?php   
+            }
+          
+            else{
+                ?>
+                <script text="text/javascript">
+                    
+                    alert("Wrong Password!");
+                //  window.location.href="logIn.php";
+                    </script>
+                <?php
+            }
+        }
+
+
+
+?>
 </body>
 
 </html>

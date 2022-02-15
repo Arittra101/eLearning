@@ -24,7 +24,7 @@ include "dbConnection.php";
         margin: 10px;
     }
 
-    .image{
+    .image {
 
         width: 100%;
         height: 160px;
@@ -171,7 +171,7 @@ include "dbConnection.php";
         <hr>
         <div style="margin-top: 40px; margin-left:5%;margin-right:5%" class="row mb-2 ">
             <div class="Card_container col-md-4 col-lg-3">
-                <div > 
+                <div>
                     <img class="image" src="image/elearn.jpg" alt="">
                 </div>
                 <div class="Sh">
@@ -208,7 +208,7 @@ include "dbConnection.php";
                 </div>
             </div>
             <div class="Card_container col-md-4 col-lg-3">
-                <div >
+                <div>
                     <img class="image" src="image/elearn.jpg" alt="">
                 </div>
                 <div class="Sh">
@@ -227,7 +227,7 @@ include "dbConnection.php";
             </div>
 
         </div>
-        
+
         <!-- end Blpg part -->
 
         <footer class="container">
@@ -258,7 +258,22 @@ include "dbConnection.php";
             </script>
         <?php
         }
+
+
+        if (isset($_POST["logIn"])) {
+
         ?>
+            <script type="text/javascript">
+                {
+
+                    window.location.href = "logIn.php";
+                }
+            </script>
+        <?php
+        }
+
+        ?>
+
 
 </body>
 
