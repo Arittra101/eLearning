@@ -9,10 +9,10 @@ include "dbConnection.php"
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet"  type="text/css" href="add_course_style.css">
+    <link rel="stylesheet" type="text/css" href="add_course_style.css">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    
+
     <title>Hello, world!</title>
 </head>
 
@@ -24,7 +24,7 @@ include "dbConnection.php"
 
         <h2>Add course</h2><br>
 
-        <form class="form" method="post">
+        <form class="form" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="exampleInputEmail1">Course Name</label>
                 <input name="C_Name" style="height: 50px;width:95%;" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -45,6 +45,11 @@ include "dbConnection.php"
             <div class="form-group">
                 <label for="exampleInputPassword1">Course Selling Price</label>
                 <input name="C_SPrice" style="height: 50px;width:95%;" type="text" class="form-control" id="exampleInputPassword1">
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputPassword1">Image Upload</label>
+                <input name="image" style="width:95%;" type="file" class="form-control" id="exampleInputPassword1" value="Choose Image">
             </div>
 
 
@@ -85,7 +90,7 @@ include "dbConnection.php"
 
     <?php
 
-    if (isset($_POST["submit"])) {
+    if (isset($_POST["submit"]) and isset($_FILES["image"])) {
 
         echo "D1s";
         // $C_Name = $_POST["C_Name"];
@@ -94,13 +99,19 @@ include "dbConnection.php"
         // $C_OPrice = $_POST["C_OPrice"];
         // $C_SPrice = $_POST["C_SPrice"];  
 
+
+        $target = "image/".basename($_FILES["image"]["name"]);
+        $imageFIle = $_FILES["image"]["name"];
+        echo  $imageFIle;
+
+
         $C_Name = $_POST["C_Name"];
         $C_Des = $_POST["C_Des"];
         $C_Author = $_POST["C_Author"];
         $C_OPrice = $_POST["C_OPrice"];
         $C_SPrice = $_POST["C_SPrice"];
         echo $C_Name;
-        $query = "INSERT INTO `course`(`C_Name`, `C_Des`, `C_Author`, `C_OPrice`, `C_SPrice`) VALUES ('$C_Name',' $C_Des','$C_Author','$C_OPrice','$C_SPrice')";
+        $query = "INSERT INTO `course`(`C_Name`, `C_Des`, `C_Author`, `C_OPrice`, `C_SPrice`,`C_image`) VALUES ('$C_Name',' $C_Des','$C_Author','$C_OPrice','$C_SPrice','$imageFIle')";
 
         $cn = mysqli_query($conn, $query);
         if ($cn) {
@@ -109,8 +120,19 @@ include "dbConnection.php"
                 alert("Succesfully Added Courses!")
                 window.location.href = "admin_course.php"
             </script>
-    <?php
+        <?php
         }
+
+        if(move_uploaded_file($_FILES["image"]["tmp_name"],$target)){
+            echo "Image go to target";
+        }
+    } else {
+        ?>
+        <script type="text/javascript">
+            alert("Please Upload Image!!");
+        </script>
+
+    <?php
     }
 
     ?>
