@@ -22,7 +22,9 @@ include "dbConnection.php";
         width: 30%;
         height: 400px;
         margin: 10px;
+        border-radius: 10px;
     }
+
 
     .image {
 
@@ -73,6 +75,7 @@ include "dbConnection.php";
         color: white;
         font-weight: bold;
         border-radius: 20px;
+        margin-top: 8px;
 
     }
 </style>
@@ -92,7 +95,7 @@ include "dbConnection.php";
                         <a class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="admin_dasboard.php">Courses</a>
+                        <a class="nav-link" href="admin_dasboard.php">Admin</a>
                     </li>
 
                     <li class="nav-item ">
@@ -170,26 +173,45 @@ include "dbConnection.php";
         <h2 style="text-align: center;">Recomenden Courses</h2>
         <hr>
         <div style="margin-top: 40px; margin-left:5%;margin-right:5%" class="row mb-2 ">
-            <div class="Card_container col-md-4 col-lg-3">
-                <div>
-                    <img class="image" src="image/elearn.jpg" alt="">
-                </div>
-                <div class="Sh">
-                    Free Course
-                </div>
-                <div class="Lh">
-                    Python Course
-                </div>
-                <div class="Des">
-                    Python is an interpreted high-leve high-level hinondnfk programming language. Its design philosophy emphasizes
-                    code readability
-                </div>
-                <div class="enroll">
-                    <button type="button" class="btn enroll_btn">Enroll Course</button>
-                </div>
-            </div>
 
-            <div class="Card_container col-md-4 col-lg-3">
+
+            <?php  //start of php 1
+
+            $query = "SELECT * FROM `course` Limit 3 ";
+            $rs = mysqli_query($conn, $query);
+            while ($row = mysqli_fetch_array($rs)) {
+                //end of php 1
+            ?>
+
+
+
+                <div class="Card_container col-md-4 col-lg-3">
+                    <div>
+                        <img class="image" src="image/elearn.jpg" alt="">
+                    </div>
+                    <div class="Sh">
+                        Free Course
+                    </div>
+                    <div class="Lh">
+                        <?php echo $row["C_Name"] ?>
+                    </div>
+                    <div class="Des">
+                        <?php echo $row["C_Des"] ?>
+                    </div>
+                    <div class="enroll">
+                        <button type="button" class="btn enroll_btn">Enroll Course</button>
+                    </div>
+                </div>
+
+
+
+
+            <?php //start of php 2
+            }
+            //end of php 2   
+            ?>
+            <!-- 
+             <div class="Card_container col-md-4 col-lg-3">
                 <div>
                     <img class="image" src="image/elearn.jpg" alt="">
                 </div>
@@ -206,33 +228,64 @@ include "dbConnection.php";
                 <div class="enroll">
                     <button type="button" class="btn enroll_btn">Enroll Course</button>
                 </div>
-            </div>
-            <div class="Card_container col-md-4 col-lg-3">
-                <div>
-                    <img class="image" src="image/elearn.jpg" alt="">
-                </div>
-                <div class="Sh">
-                    Free Course
-                </div>
-                <div class="Lh">
-                    Python Course
-                </div>
-                <div class="Des">
-                    Python is an interpreted high-leve high-level hinondnfk programming language. Its design philosophy emphasizes
-                    code readability
-                </div>
-                <div class="enroll">
-                    <button type="button" class="btn enroll_btn">Enroll Course</button>
-                </div>
-            </div>
+            </div> -->
+
+
+
 
         </div>
 
         <!-- end Blpg part -->
 
-        <footer class="container">
-            <p class="float-end"><a href="#">Back to top</a></p>
-            <p>© 2017–2021 Company, Inc. · <a href="#">Privacy</a> · <a href="#">Terms</a></p>
+        <footer class="container py-5">
+            <div class="row">
+                <div class="col-12 col-md">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="d-block mb-2" role="img" viewBox="0 0 24 24">
+                        <title>Product</title>
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94"></path>
+                    </svg>
+                    <small class="d-block mb-3 text-muted">© 2017–2021</small>
+                </div>
+                <div class="col-6 col-md">
+                    <h5>Features</h5>
+                    <ul class="list-unstyled text-small">
+                        <li><a class="link-secondary" href="#">Cool stuff</a></li>
+                        <li><a class="link-secondary" href="#">Random feature</a></li>
+                        <li><a class="link-secondary" href="#">Team feature</a></li>
+                        <li><a class="link-secondary" href="#">Stuff for developers</a></li>
+                        <li><a class="link-secondary" href="#">Another one</a></li>
+                        <li><a class="link-secondary" href="#">Last time</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md">
+                    <h5>Resources</h5>
+                    <ul class="list-unstyled text-small">
+                        <li><a class="link-secondary" href="#">Resource name</a></li>
+                        <li><a class="link-secondary" href="#">Resource</a></li>
+                        <li><a class="link-secondary" href="#">Another resource</a></li>
+                        <li><a class="link-secondary" href="#">Final resource</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md">
+                    <h5>Resources</h5>
+                    <ul class="list-unstyled text-small">
+                        <li><a class="link-secondary" href="#">Business</a></li>
+                        <li><a class="link-secondary" href="#">Education</a></li>
+                        <li><a class="link-secondary" href="#">Government</a></li>
+                        <li><a class="link-secondary" href="#">Gaming</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md">
+                    <h5>About</h5>
+                    <ul class="list-unstyled text-small">
+                        <li><a class="link-secondary" href="#">Team</a></li>
+                        <li><a class="link-secondary" href="#">Locations</a></li>
+                        <li><a class="link-secondary" href="#">Privacy</a></li>
+                        <li><a class="link-secondary" href="#">Terms</a></li>
+                    </ul>
+                </div>
+            </div>
         </footer>
 
 

@@ -134,7 +134,7 @@ include "dbConnection.php"
 
           <?php
           
-            $rs = mysqli_query($conn,"SELECT `C_ID`, `C_Name`, `C_Author`, `C_OPrice`, `C_SPrice` FROM `course` ");
+            $rs = mysqli_query($conn,"SELECT `C_ID`, `C_Name`, `C_Author`, `C_OPrice`, `C_SPrice` FROM `course` "); //object <
             while($row = mysqli_fetch_array($rs))
             {
               echo "<tr>";
@@ -143,7 +143,7 @@ include "dbConnection.php"
               echo "<td>"; echo $row["C_Author"]; echo "</td>"; 
               echo "<td>"; echo $row["C_OPrice"]; echo "</td>"; 
               echo "<td>"; echo $row["C_SPrice"]; echo "</td>"; 
-              echo "<td>"; ?> <a class ="btnId" href ="">Edit</a> Or <a class ="btnId" href="course_delete.php?id=<?php echo $row["C_ID"]?>">Deletes</a> <?php echo "</td>";
+              echo "<td>"; ?> <a class ="btnId" href ="course_edit.php?id=<?php echo $row["C_ID"]?>">Edit</a> Or <a class ="btnId" href="course_delete.php?id=<?php echo $row["C_ID"]?>">Deletes</a> <?php echo "</td>";
               echo "</tr>";
             } 
 

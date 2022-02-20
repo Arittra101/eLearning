@@ -1,3 +1,8 @@
+<?php
+
+include "dbConnection.php";
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -25,12 +30,12 @@
       <div class="sidebar-sticky">
         <ul class="nav flex-column">
           <li class="nav-item ">
-            <a style = "color: black"class="nav-link bg-warning active" href="http://www.google.com">
+            <a style="color: black" class="nav-link bg-warning active" href="http://www.google.com">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home">
                 <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                 <polyline points="9 22 9 12 15 12 15 22"></polyline>
               </svg>
-              Dashboard <span class="sr-only">(current)</span>
+               Dashboard <span class="sr-only">(current)</span>
             </a>
           </li>
           <li class="nav-item">
@@ -49,7 +54,7 @@
                 <circle cx="20" cy="21" r="1"></circle>
                 <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
               </svg>
-             Feedbacks
+              Feedbacks
             </a>
           </li>
           <li class="nav-item">
@@ -74,7 +79,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="index.php">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers">
                 <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
                 <polyline points="2 17 12 22 22 17"></polyline>
@@ -101,7 +106,7 @@
         </div>
       </div>
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Dashboard</h1>
+        <h1 class="h2">Admin Dashboard</h1>
 
       </div>
       <!-- Dashboard header above ^^ -->
@@ -110,15 +115,21 @@
       <div class="row">
 
 
-        <div class="col-4 mx-2">
+        <div class="col-4 mx-2 ">
 
-          <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <div style="background-color:green" class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
             <div class="col p-4 d-flex flex-column position-static">
-              <strong class="d-inline-block mb-2 text-primary">Student</strong>
-              <h3 class="mb-0">Featured post</h3>
-              <div class="mb-1 text-muted">Nov 12</div>
-              <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-              <a href="#" class="stretched-link">Continue reading</a>
+              <strong style="text-align: center; color:white" class="d-inline-block mb-2 ">Students</strong>
+
+              <div style="text-align: center;margin-top:3px; font-size:20px;font-weight:bold;color:white">
+                <?php $rs = mysqli_query($conn, "SELECT * FROM `student` ");
+                echo mysqli_num_rows($rs); ?>
+              </div>
+
+              <div style="text-align: center;margin-top:10px; font-size:20px;font-weight:bold;color:white">
+                View
+              </div>
+
             </div>
           </div>
 
@@ -127,13 +138,19 @@
 
         <div class="col-4 mx-4">
 
-          <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div style="background-color:red" class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
             <div class="col p-4 d-flex flex-column position-static">
-              <strong class="d-inline-block mb-2 text-primary">Courses</strong>
-              <h3 class="mb-0">Featured post</h3>
-              <div class="mb-1 text-muted">Nov 12</div>
-              <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-              <a href="#" class="stretched-link">Continue reading</a>
+              <strong style="text-align: center; color:white" class="d-inline-block mb-2 ">Courses</strong>
+
+              <div style="text-align: center;margin-top:3px; font-size:20px;font-weight:bold;color:white">
+                <?php $rs = mysqli_query($conn, "SELECT * FROM `course`");
+                echo mysqli_num_rows($rs); ?>
+              </div>
+
+              <div style="text-align: center;margin-top:10px; font-size:20px;font-weight:bold;color:white">
+                View
+              </div>
+
             </div>
           </div>
 
@@ -145,7 +162,7 @@
 
 
       <h2>All Courses Courses</h2>
-      <div style="text-align: center;"  class="table-responsive">
+      <div style="text-align: center;" class="table-responsive">
         <table class="table table-striped table-sm">
           <thead>
             <tr>
@@ -153,8 +170,8 @@
               <th>Course Name</th>
               <th>Author Name</th>
               <th>Course Price</th>
-            
-             
+
+
             </tr>
           </thead>
           <tbody style="margin-top:5px;">
@@ -170,7 +187,7 @@
               <td>ipsum</td>
               <td>dolor</td>
             </tr>
-          
+
 
           </tbody>
         </table>
@@ -200,5 +217,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     -->
 </body>
+<?php
+
+$rs = mysqli_query($conn, "SELECT * FROM `student` ");
+echo mysqli_num_rows($rs);
+
+?>
+
+
 
 </html>

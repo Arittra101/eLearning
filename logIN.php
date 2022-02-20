@@ -69,7 +69,7 @@
 
 
         session_start();
-        if(isset($_POST["logIN"]))
+        if(isset($_POST["logIN"]))   
         {
             // echo "ok";
           
