@@ -1,5 +1,7 @@
 <?php
-include "dbConnection.php"
+include "dbConnection.php";
+session_start();
+
 ?>
 <!doctype html>
 <html class="no-js" lang="zxx">
@@ -65,11 +67,11 @@ include "dbConnection.php"
                             <div class="header-contact-info d-flex">
                                 <div class="header-contact header-contact-phone">
                                     <span class="ti-headphone"></span>
-                                    <p class="phone-number">+0123456789</p>
+                                    <p class="phone-number"><?php echo $_SESSION['FName']."  ".$_SESSION['LName']; ?></p>
                                 </div>
                                 <div class="header-contact header-contact-email">
                                     <span class="ti-email"></span>
-                                    <p class="email-name">support@gmail.com</p>
+                                    <p class="email-name"><?php echo $_SESSION['Email'] ?></p>
                                 </div>
                             </div>
                         </div>
@@ -119,12 +121,12 @@ include "dbConnection.php"
                                         </li>
 
                                         <li>
-                                            <a href="contact_us.php">CONTACT</a>
+                                           <a href="contact_us.php">Feedbacks</a>
                                         </li>
                                         <li>
-                                            <form method="POST">
-                                                <input class="button_design" type="button" value="LogIn" href="contact_us.html"></a>
-                                                <input class="button_design" type="button" value="SignUp" href="contact_us.html"></a>
+                                        <form method="post">
+                                                
+                                                <button name="sign" class="button_design" type="submit">SignOut</button>
                                             </form>
                                         </li>
 
@@ -432,5 +434,14 @@ include "dbConnection.php"
     <script src="js/main.js"></script>
 </body>
 
-
+ <?php
+       if (isset($_POST["sign"])) {
+        ?>
+            session_destroy();
+            <script type="text/javascript">
+                window.location.href = "login.php";
+            </script>
+        <?php
+        }
+ ?>
 </html>

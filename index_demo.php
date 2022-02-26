@@ -1,17 +1,22 @@
 <?php
 
+session_start();
 include "dbConnection.php";
 
+// echo $_SESSION['Id'];
+// echo $_SESSION['FName'];
+// echo $_SESSION['LName'];
+// echo $_SESSION['Email'];
 $total_course_query = "SELECT * FROM `course` ";
-$getres = mysqli_query($conn,$total_course_query);
+$getres = mysqli_query($conn, $total_course_query);
 
 $totalcourse = mysqli_num_rows($getres);
 
 $total_course_query = "SELECT * FROM `student` ";
-$getres = mysqli_query($conn,$total_course_query);
+$getres = mysqli_query($conn, $total_course_query);
 
 $totalstudent = mysqli_num_rows($getres);
-
+// session_destroy();
 ?>
 <!doctype html>
 <html class="no-js" lang="zxx">
@@ -77,11 +82,11 @@ $totalstudent = mysqli_num_rows($getres);
                             <div class="header-contact-info d-flex">
                                 <div class="header-contact header-contact-phone">
                                     <span class="ti-headphone"></span>
-                                    <p class="phone-number">+0123456789</p>
+                                    <p class="phone-number"><?php echo $_SESSION['FName'] . "  " . $_SESSION['LName']; ?></p>
                                 </div>
                                 <div class="header-contact header-contact-email">
                                     <span class="ti-email"></span>
-                                    <p class="email-name">support@gmail.com</p>
+                                    <p class="email-name"><?php echo $_SESSION['Email'] ?></p>
                                 </div>
                             </div>
                         </div>
@@ -131,12 +136,12 @@ $totalstudent = mysqli_num_rows($getres);
                                         </li>
 
                                         <li>
-                                            <a href="contact_us.php">CONTACT</a>
+                                            <a href="contact_us.php">Feedbacks</a>
                                         </li>
                                         <li>
                                             <form method="post">
-                                                <button name="log" class="button_design" type="submit" href="signUp.php">LogIn</button>
-                                                <button name="sign" class="button_design" type="submit">SignUp</button>
+
+                                                <button name="sign" class="button_design" type="submit">SignOut</button>
                                             </form>
                                         </li>
 
@@ -316,7 +321,7 @@ $totalstudent = mysqli_num_rows($getres);
                                         </div>
                                     </div>
                                     <div class="courses-button f-right">
-                                        <a href="course_details.php?id=<?php echo $row["C_ID"]?>">View Details</a>
+                                        <a href="course_details.php?id=<?php echo $row["C_ID"] ?>">View Details</a>
                                     </div>
                                 </div>
                             </div>
@@ -326,7 +331,7 @@ $totalstudent = mysqli_num_rows($getres);
                     }
 
                     ?>
-                    
+
                 </div>
             </div>
         </div>
@@ -463,14 +468,48 @@ $totalstudent = mysqli_num_rows($getres);
                             <h1 class="primary-color">What Our Students Say</h1>
                         </div>
                         <div class="section-title-para">
-                            <p class="gray-color">Belis nisl adipiscing sapien sed malesu diame lacus eget erat Cras mollis scelerisqu Nullam arcu liquam here was consequat.</p>
+                            <p class="gray-color">We Care For You is a full service concierge company dedicated to helping our community </p>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="testimonilas-list">
                 <div class="row testimonilas-active">
-                    <div class="col-xl-12">
+
+                    <?php
+
+                    $query = "select * from feedback";
+                    $rs = mysqli_query($conn, $query);
+                    while ($row = mysqli_fetch_array($rs)) {
+                    ?>
+
+                        <div class="col-xl-12">
+                            <div class="testimonilas-wrapper mb-110">
+                                <div class="testimonilas-heading d-flex">
+                                    <div class="testimonilas-author-thumb">
+                                        <img src="img/testimonials/testimonilas_author_thumb1.png" alt="">
+                                    </div>
+                                    <div class="testimonilas-author-title">
+                                        <h1><?php echo $row['S_Name']?></h1>
+                                        <h2><?php echo $row['S_Type']?></h2>
+                                    </div>
+                                </div>
+                                <div style="height: 100px"class="testimonilas-para">
+                                    <p><?php echo $row['F_Des']?></p>
+                                </div>
+                             
+                            </div>
+                        </div>
+
+
+                    <?php
+                    }
+
+                    ?>
+
+
+
+                    <!-- <div class="col-xl-12">
                         <div class="testimonilas-wrapper mb-110">
                             <div class="testimonilas-heading d-flex">
                                 <div class="testimonilas-author-thumb">
@@ -494,82 +533,9 @@ $totalstudent = mysqli_num_rows($getres);
                                 </ul>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-xl-12">
-                        <div class="testimonilas-wrapper">
-                            <div class="testimonilas-heading d-flex">
-                                <div class="testimonilas-author-thumb">
-                                    <img src="img/testimonials/testimonilas_author_thumb1.png" alt="">
-                                </div>
-                                <div class="testimonilas-author-title">
-                                    <h1>Lisa McClanahan</h1>
-                                    <h2>CSE Student</h2>
-                                </div>
-                            </div>
-                            <div class="testimonilas-para">
-                                <p>But also the leap into electronic type reman see essentially unchanged. It was popul arised thew with the release of letraset sheets.</p>
-                            </div>
-                            <div class="testimonilas-rating">
-                                <ul>
-                                    <li><span class="ti-star"></span></li>
-                                    <li><span class="ti-star"></span></li>
-                                    <li><span class="ti-star"></span></li>
-                                    <li><span class="ti-star"></span></li>
-                                    <li><span class="ti-star"></span></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-12">
-                        <div class="testimonilas-wrapper">
-                            <div class="testimonilas-heading d-flex">
-                                <div class="testimonilas-author-thumb">
-                                    <img src="img/testimonials/testimonilas_author_thumb2.png" alt="">
-                                </div>
-                                <div class="testimonilas-author-title">
-                                    <h1>Trevor J. Angelo</h1>
-                                    <h2>Englisg Student</h2>
-                                </div>
-                            </div>
-                            <div class="testimonilas-para">
-                                <p>But also the leap into electronic type reman see essentially unchanged. It was popul arised thew with the release of letraset sheets.</p>
-                            </div>
-                            <div class="testimonilas-rating">
-                                <ul>
-                                    <li><span class="ti-star"></span></li>
-                                    <li><span class="ti-star"></span></li>
-                                    <li><span class="ti-star"></span></li>
-                                    <li><span class="ti-star"></span></li>
-                                    <li><span class="ti-star"></span></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-12">
-                        <div class="testimonilas-wrapper">
-                            <div class="testimonilas-heading d-flex">
-                                <div class="testimonilas-author-thumb">
-                                    <img src="img/testimonials/testimonilas_author_thumb1.png" alt="">
-                                </div>
-                                <div class="testimonilas-author-title">
-                                    <h1>Marquita Brown</h1>
-                                    <h2>CSE Student</h2>
-                                </div>
-                            </div>
-                            <div class="testimonilas-para">
-                                <p>But also the leap into electronic type reman see essentially unchanged. It was popul arised thew with the release of letraset sheets.</p>
-                            </div>
-                            <div class="testimonilas-rating">
-                                <ul>
-                                    <li><span class="ti-star"></span></li>
-                                    <li><span class="ti-star"></span></li>
-                                    <li><span class="ti-star"></span></li>
-                                    <li><span class="ti-star"></span></li>
-                                    <li><span class="ti-star"></span></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                    </div> -->
+
+
                 </div>
             </div>
         </div>
@@ -598,7 +564,7 @@ $totalstudent = mysqli_num_rows($getres);
                 <div class="col-xl-4 col-lg-4 col-md-4">
                     <div class="couter-wrapper mb-30 text-center">
                         <img src="img/counter/counter_icon1.png" alt="">
-                        <span class="counter"><?php echo $totalstudent;?></span>
+                        <span class="counter"><?php echo $totalstudent; ?></span>
                         <h3>Students</h3>
                     </div>
                 </div>
@@ -787,24 +753,15 @@ $totalstudent = mysqli_num_rows($getres);
 
     if (isset($_POST["sign"])) {
     ?>
+        session_destroy();
         <script type="text/javascript">
-            window.location.href = "signUp.php";
+            window.location.href = "login.php";
         </script>
     <?php
     }
 
 
-    if (isset($_POST["log"])) {
 
-    ?>
-        <script type="text/javascript">
-            {
-
-                window.location.href = "logIn.php";
-            }
-        </script>
-    <?php
-    }
 
     ?>
 </body>

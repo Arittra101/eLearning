@@ -1,6 +1,7 @@
 <?php
 
 include "dbConnection.php";
+session_start();
 $id = $_GET["id"];
 // echo $id;
 $course_query = "select * from course where C_ID = $id ";
@@ -40,6 +41,24 @@ $C_auth = $row["C_Author"];
     <link rel="stylesheet" href="css/responsive.css">
 </head>
 
+<style>
+    .button_design {
+        border: none;
+        /* border-radius: 5px; */
+        height: 35px;
+        background-color: rgb(255, 255, 255);
+
+        margin: 5px;
+
+    }
+
+    .button_design:hover {
+        background-color: rgb(251, 255, 16);
+        box-shadow: 5px 10px rgb(99, 91, 22);
+        border-radius: 5px;
+    }
+</style>
+
 <body>
     <!--[if lte IE 9]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
@@ -57,11 +76,11 @@ $C_auth = $row["C_Author"];
                             <div class="header-contact-info d-flex">
                                 <div class="header-contact header-contact-phone">
                                     <span class="ti-headphone"></span>
-                                    <p class="phone-number">+0123456789</p>
+                                    <p class="phone-number"><?php echo $_SESSION['FName']."  ".$_SESSION['LName']; ?></p>
                                 </div>
                                 <div class="header-contact header-contact-email">
                                     <span class="ti-email"></span>
-                                    <p class="email-name">support@gmail.com</p>
+                                    <p class="email-name"><?php echo $_SESSION['Email'] ?></p>
                                 </div>
                             </div>
                         </div>
@@ -111,16 +130,13 @@ $C_auth = $row["C_Author"];
                                         </li>
 
                                         <li>
-                                            <a href="contact_us.php">CONTACT</a>
+                                           <a href="contact_us.php">Feedbacks</a>
                                         </li>
+                                     
                                         <li>
-                                            <form method="POST">
-                                                <input type="button" value="LogIn" href="contact_us.html"></a>
-                                            </form>
-                                        </li>
-                                        <li>
-                                            <form method="POST">
-                                                <input type="button" value="SignUp" href="contact_us.html"></a>
+                                            <form method="post">
+                                                
+                                                <button name="sign" class="button_design" type="submit">SignOut</button>
                                             </form>
                                         </li>
 
@@ -957,6 +973,15 @@ $C_auth = $row["C_Author"];
 
 <?php
 
+if (isset($_POST["sign"])) {
+    ?>
+        session_destroy();
+        <script type="text/javascript">
+            window.location.href = "login.php";
+        </script>
+    <?php
+    }
+    
 if (!isset($id)) {
      echo "df";
 ?>

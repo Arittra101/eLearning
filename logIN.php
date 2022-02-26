@@ -73,16 +73,22 @@
         {
             // echo "ok";
           
-            $query  = "select S_Pass from student student where S_Email =  '$_POST[email]' and S_Pass= $_POST[pass]" ;
+            $query  = "select * from student student where S_Email =  '$_POST[email]' and S_Pass= $_POST[pass]" ;
             $rs = mysqli_query($conn,$query);
             $num_row = mysqli_num_rows($rs);
+            $get_id = mysqli_fetch_array($rs);
+            echo $get_id['S_ID'];
             if($num_row>0)
             {
+                $_SESSION['Id']=$get_id['S_ID'];
+               $_SESSION['FName']=$get_id['S_FName'];
+               $_SESSION['LName']=$get_id['S_LName'];
+               $_SESSION['Email']=$get_id['S_Email'];
                 ?>
                 <script text="text/javascript">
                     
                     alert("Successfully LogIN!");
-                    window.location.href="userIndex.php";
+                    window.location.href="index_demo.php";
                     </script>
                 <?php   
             }
@@ -96,6 +102,7 @@
                     </script>
                 <?php
             }
+       
         }
 
 

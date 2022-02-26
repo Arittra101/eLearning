@@ -1,3 +1,8 @@
+<?php
+include "dbConnection.php";
+session_start();
+// echo $_SESSION['Id'];
+?>
 <!doctype html>
 <html class="no-js" lang="zxx">
 
@@ -60,11 +65,11 @@
                             <div class="header-contact-info d-flex">
                                 <div class="header-contact header-contact-phone">
                                     <span class="ti-headphone"></span>
-                                    <p class="phone-number">+0123456789</p>
+                                    <p class="phone-number"><?php echo $_SESSION['FName']."  ".$_SESSION['LName']; ?></p>
                                 </div>
                                 <div class="header-contact header-contact-email">
                                     <span class="ti-email"></span>
-                                    <p class="email-name">support@gmail.com</p>
+                                    <p class="email-name"><?php echo $_SESSION['Email'] ?></p>
                                 </div>
                             </div>
                         </div>
@@ -114,13 +119,13 @@
                                         </li>
                                      
                                         <li>
-                                            <a href="contact_us.php">CONTACT</a>
+                                          <a href="contact_us.php">Feedbacks</a>
                                         </li>
                                       
                                         <li>
-                                            <form method="POST">
-                                                <input class="button_design" type="button" value="LogIn" href="contact_us.html"></a>
-                                                <input class="button_design" type="button" value="SignUp" href="contact_us.html"></a>
+                                        <form method="post">
+                                                
+                                                <button name="sign" class="button_design" type="submit">SignOut</button>
                                             </form>
                                         </li>
 
@@ -184,7 +189,7 @@
                                 </div>
                                 <div class="contact-text">
                                     <h5>Call Us</h5>
-                                    <span>+0123456789</span>
+                                    <span>+8801869544099</span>
                                 </div>
                             </li>
                             <li>
@@ -193,7 +198,7 @@
                                 </div>
                                 <div class="contact-text">
                                     <h5>Email Us</h5>
-                                    <span>support@gmail.com</span>
+                                    <span>E-Learning@gmail.com</span>
                                 </div>
                             </li>
                             <li>
@@ -202,7 +207,7 @@
                                 </div>
                                 <div class="contact-text">
                                     <h5>Location</h5>
-                                    <span>123 Business Avenue, Hoston, USA</span>
+                                    <span>Niketon Bazar,Dhaka</span>
                                 </div>
                             </li>
                         </ul>
@@ -210,7 +215,7 @@
                 </div>
                 <div class="col-xl-7 col-lg-6 col-md-10 offset-md-1 ml-md-auto">
                     <div class="events-details-form faq-area-form mb-30 p-0">
-                        <form>
+                        <form method = "post">
                             <div class="row">
                                 <div class="col-xl-8">
                                     <div class="events-form-title mb-25">
@@ -218,23 +223,23 @@
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6">
-                                    <input placeholder="Name :" type="text">
+                                    <input name="Name" placeholder="Name :" type="text" value="<?php echo $_SESSION['FName']."  ".$_SESSION['LName']; ?>" readonly>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6">
-                                    <input placeholder="Email :" type="text">
+                                    <input name="email" placeholder="Email :" type="text" value="<?php echo $_SESSION['Email'] ?>" readonly>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6">
-                                    <input placeholder="Subject :" type="text">
+                                    <input name="subject" placeholder="Subject :" type="text">
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6">
-                                    <input placeholder="Experience :" type="text">
+                                    <input name="occu" placeholder="Occupation :" type="text">
                                 </div>
                                 <div class="col-xl-12">
-                                    <textarea cols="30" rows="10" placeholder="Message :"></textarea>
+                                    <textarea name="feed" cols="30" rows="10" placeholder="Feedbacks :"></textarea>
                                 </div>
                                 <div class="col-xl-12">
                                     <div class="faq-form-btn events-form-btn">
-                                        <button class="btn m-0">submit now</button>
+                                        <button  name ="submit" type="submit" class="btn m-0">submit now</button>
                                     </div>
                                 </div>
                             </div>
@@ -407,5 +412,29 @@
     <script src="js/main.js"></script>
 </body>
 
+<?php
+       if (isset($_POST["sign"])) {
+        ?>
+            session_destroy();
+            <script type="text/javascript">
+                window.location.href = "login.php";
+            </script>
+        <?php
+        }
 
+        if(isset($_POST['submit']))
+        {
+
+            // $query = "insert into feedback values('$_POST[Name]','$_SESSION[Id]','$_POST[email]','$_POST[subject]','$_POST[occu]','$_POST[feed]')";
+            $query="INSERT INTO `feedback`(`S_Name`, `S_ID`, `S_Email`, `Subject`, `S_Type`, `F_Des`) VALUES ('$_POST[Name]','$_SESSION[Id]','$_POST[email]','$_POST[subject]','$_POST[occu]','$_POST[feed]')";
+            if(mysqli_query($conn,$query)){
+                ?>
+                <script type="text/javascript">
+                    alert("Successfully Added Feedbacks")    
+                    window.location.href ="index_demo.php"
+                </script>
+                <?php
+            }
+        }
+?>
 </html>

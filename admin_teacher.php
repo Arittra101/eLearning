@@ -38,7 +38,7 @@ include "dbConnection.php"
             </a>
           </li>
           <li class="nav-item">
-            <a style = "color: black"class="nav-link bg-warning active" href="#">
+            <a class="nav-link" href="admin_course.php">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file">
                 <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
                 <polyline points="13 2 13 9 20 9"></polyline>
@@ -68,13 +68,13 @@ include "dbConnection.php"
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="admin_teacher.php">
+            <a style = "color: black"class="nav-link bg-warning "  href="#">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bar-chart-2">
                 <line x1="18" y1="20" x2="18" y2="10"></line>
                 <line x1="12" y1="20" x2="12" y2="4"></line>
                 <line x1="6" y1="20" x2="6" y2="14"></line>
               </svg>
-              Instructor
+              Teacher
             </a>
           </li>
           <li class="nav-item">
@@ -116,16 +116,16 @@ include "dbConnection.php"
 
 
       <!-- course table -->
-      <h2>All Courses Courses</h2>
+      <h2>All Teachers</h2>
       <div style="text-align: center;"  class="table-responsive">
         <table class="table table-striped table-sm">
           <thead>
             <tr>
-              <th>Course Id</th>
-              <th>Course Name</th>
-              <th>Author Name</th>
-              <th>Course Orginal Price</th>
-              <th>Course Selling Price </th>
+              <th>Instructor Id</th>
+              <th>Instructor Name</th>
+              <th>Teacher Bio</th>
+              <th>InstructorMail </th>
+              <th>Instructor Type</th>
               <th>Edit and Delete </th>
              
             </tr>
@@ -134,16 +134,16 @@ include "dbConnection.php"
 
           <?php
           
-            $rs = mysqli_query($conn,"SELECT `C_ID`, `C_Name`, `C_Author`, `C_OPrice`, `C_SPrice` FROM `course` "); //object <
+            $rs = mysqli_query($conn,"SELECT `T_ID`, `T_Name`, `T_Des`, `T_Mail`, `T_Type` FROM `teacher` "); //object <
             while($row = mysqli_fetch_array($rs))
             {
               echo "<tr>";
-              echo "<td>"; echo $row["C_ID"]; echo "</td>";
-              echo "<td>"; echo $row["C_Name"]; echo "</td>";
-              echo "<td>"; echo $row["C_Author"]; echo "</td>"; 
-              echo "<td>"; echo $row["C_OPrice"]; echo "</td>"; 
-              echo "<td>"; echo $row["C_SPrice"]; echo "</td>"; 
-              echo "<td>"; ?> <a class ="btnId" href ="course_edit.php?id=<?php echo $row["C_ID"]?>">Edit</a> Or <a class ="btnId" href="course_delete.php?id=<?php echo $row["C_ID"]?>">Deletes</a> <?php echo "</td>";
+              echo "<td>"; echo $row["T_ID"]; echo "</td>";
+              echo "<td>"; echo $row["T_Name"]; echo "</td>";
+              echo "<td>"; echo $row["T_Des"]; echo "</td>"; 
+              echo "<td>"; echo $row["T_Mail"]; echo "</td>"; 
+              echo "<td>"; echo $row["T_Type"]; echo "</td>"; 
+              echo "<td>"; ?> <a class ="btnId" href ="teacher_edit.php?id=<?php echo $row["T_ID"]?>">Edit</a> Or <a class ="btnId" href="teacher_delete.php?id=<?php echo $row["T_ID"]?>">Deletes</a> <?php echo "</td>";
               echo "</tr>";
             } 
 
@@ -166,7 +166,7 @@ include "dbConnection.php"
         </table>
       </div>
           <!-- course table -->
-        <a class = "float_button" href="add_course.php">+</a>
+        <a class = "float_button" href="add_teacher.php">+</a>
 
 
          
