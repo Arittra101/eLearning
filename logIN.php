@@ -80,7 +80,7 @@
             echo $get_id['S_ID'];
             if($num_row>0)
             {
-                $_SESSION['Id']=$get_id['S_ID'];
+               $_SESSION['Id']=$get_id['S_ID'];
                $_SESSION['FName']=$get_id['S_FName'];
                $_SESSION['LName']=$get_id['S_LName'];
                $_SESSION['Email']=$get_id['S_Email'];

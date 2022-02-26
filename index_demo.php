@@ -16,6 +16,8 @@ $total_course_query = "SELECT * FROM `student` ";
 $getres = mysqli_query($conn, $total_course_query);
 
 $totalstudent = mysqli_num_rows($getres);
+
+
 // session_destroy();
 ?>
 <!doctype html>
@@ -347,109 +349,59 @@ $totalstudent = mysqli_num_rows($getres);
                             <h1 class="primary-color">Our Experience Advisors</h1>
                         </div>
                         <div class="section-title-para">
-                            <p class="gray-color">Belis nisl adipiscing sapien sed malesu diame lacus eget erat Cras mollis scelerisqu Nullam arcu liquam here was consequat.</p>
+                            <p class="gray-color">We place a high value on quality of instruction so we can provide our clients with the most effective training experience</p>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="team-list">
                 <div class="row">
-                    <div class="col-xl-3 col-lg-3 col-md-6">
-                        <div class="team-wrapper mb-30">
-                            <div class="team-thumb">
-                                <img src="img/team/teammember1.jpg" alt="">
-                            </div>
-                            <div class="team-social-info text-center">
-                                <div class="team-social-para">
-                                    <p>Belis nisl adipiscing sapien malesu diame lacus eget erats</p>
+
+                    <?php
+                    $query = "Select * from teacher";
+                    $rs = mysqli_query($conn, $query);  //return obj
+                    while ($row = mysqli_fetch_array($rs)) {
+                    ?>
+
+                        <div class="col-xl-3 col-lg-3 col-md-6">
+                            <div   class="team-wrapper mb-30">
+                                <div  class="team-thumb">
+                                    <img  src="image/<?php echo $row['T_image'] ?>" alt="">
+                                    <!-- <img  src="image/rsz_11orpon.jpg" alt=""> -->
                                 </div>
-                                <div class="team-social-icon-list">
-                                    <ul>
-                                        <li><a href="#"><span class="ti-facebook"></span></a></li>
-                                        <li><a href="#"><span class="ti-twitter-alt"></span></a></li>
-                                        <li><a href="#"><span class="ti-google"></span></a></li>
-                                        <li><a href="#"><span class="ti-linkedin"></span></a></li>
-                                    </ul>
+                                <div class="team-social-info text-center">
+                                    <div class="team-social-para">
+                                        <p><?php echo $row['T_Des']?></p>
+                                    </div>
+                                    <div class="team-social-icon-list">
+                                        <ul>
+                                            <li><a href="#"><span class="ti-facebook"></span></a></li>
+                                            <li><a href="#"><span class="ti-twitter-alt"></span></a></li>
+                                            <li><a href="#"><span class="ti-google"></span></a></li>
+                                            <li><a href="#"><span class="ti-linkedin"></span></a></li>
+                                        </ul>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="team-teacher-info text-center">
-                                <h1>Chase M. Bynum</h1>
-                                <h2>English Teacher</h2>
+                                <div class="team-teacher-info text-center">
+                                    <h1><?php echo $row['T_Name']?></h1>
+                                    <h2><?php echo $row['T_Type']?></h2>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-3 col-md-6">
-                        <div class="team-wrapper mb-30">
-                            <div class="team-thumb">
-                                <img src="img/team/teammember2.jpg" alt="">
-                            </div>
-                            <div class="team-social-info text-center">
-                                <div class="team-social-para">
-                                    <p>Belis nisl adipiscing sapien malesu diame lacus eget erats</p>
-                                </div>
-                                <div class="team-social-icon-list">
-                                    <ul>
-                                        <li><a href="#"><span class="ti-facebook"></span></a></li>
-                                        <li><a href="#"><span class="ti-twitter-alt"></span></a></li>
-                                        <li><a href="#"><span class="ti-google"></span></a></li>
-                                        <li><a href="#"><span class="ti-linkedin"></span></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="team-teacher-info text-center">
-                                <h1>Brenda C. Garcia</h1>
-                                <h2>CSE Teacher</h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-3 col-md-6">
-                        <div class="team-wrapper mb-30">
-                            <div class="team-thumb">
-                                <img src="img/team/teammember3.jpg" alt="">
-                            </div>
-                            <div class="team-social-info text-center">
-                                <div class="team-social-para">
-                                    <p>Belis nisl adipiscing sapien malesu diame lacus eget erats</p>
-                                </div>
-                                <div class="team-social-icon-list">
-                                    <ul>
-                                        <li><a href="#"><span class="ti-facebook"></span></a></li>
-                                        <li><a href="#"><span class="ti-twitter-alt"></span></a></li>
-                                        <li><a href="#"><span class="ti-google"></span></a></li>
-                                        <li><a href="#"><span class="ti-linkedin"></span></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="team-teacher-info text-center">
-                                <h1>Marc K. Bruhn</h1>
-                                <h2>Math Teacher</h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-3 col-md-6">
-                        <div class="team-wrapper mb-30">
-                            <div class="team-thumb">
-                                <img src="img/team/teammember4.jpg" alt="">
-                            </div>
-                            <div class="team-social-info text-center">
-                                <div class="team-social-para">
-                                    <p>Belis nisl adipiscing sapien malesu diame lacus eget erats</p>
-                                </div>
-                                <div class="team-social-icon-list">
-                                    <ul>
-                                        <li><a href="#"><span class="ti-facebook"></span></a></li>
-                                        <li><a href="#"><span class="ti-twitter-alt"></span></a></li>
-                                        <li><a href="#"><span class="ti-google"></span></a></li>
-                                        <li><a href="#"><span class="ti-linkedin"></span></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="team-teacher-info text-center">
-                                <h1>Mary M. Douglas</h1>
-                                <h2>English Teacher</h2>
-                            </div>
-                        </div>
-                    </div>
+
+                    <?php
+
+
+                    }
+
+
+                    ?>
+
+
+
+
+
+
                 </div>
             </div>
         </div>
@@ -490,14 +442,14 @@ $totalstudent = mysqli_num_rows($getres);
                                         <img src="img/testimonials/testimonilas_author_thumb1.png" alt="">
                                     </div>
                                     <div class="testimonilas-author-title">
-                                        <h1><?php echo $row['S_Name']?></h1>
-                                        <h2><?php echo $row['S_Type']?></h2>
+                                        <h1><?php echo $row['S_Name'] ?></h1>
+                                        <h2><?php echo $row['S_Type'] ?></h2>
                                     </div>
                                 </div>
-                                <div style="height: 100px"class="testimonilas-para">
-                                    <p><?php echo $row['F_Des']?></p>
+                                <div style="height: 100px" class="testimonilas-para">
+                                    <p><?php echo $row['F_Des'] ?></p>
                                 </div>
-                             
+
                             </div>
                         </div>
 
