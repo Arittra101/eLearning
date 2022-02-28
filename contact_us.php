@@ -114,8 +114,16 @@ session_start();
                                         </li>
                                     
                                         <li>
-                                            <a href="course_01.php">Courses</a>
-                                           
+                                            <a href="">Courses</a>
+                                            <ul class="submenu">
+                                                <li>
+                                                    <a href="course_01.php">All Courses</a>
+                                                </li>
+                                                <li>
+                                                    <a href="Mycourse.php">My Courses</a>
+                                                </li>
+                                                
+                                            </ul>
                                         </li>
                                      
                                         <li>

@@ -2,15 +2,36 @@
 
 include "dbConnection.php";
 session_start();
-$id = $_GET["id"];
+$id = $_GET["id"];          //course Id
+$_SESSION['C_ID'] = $id;  //course Id to session
 // echo $id;
+
+$check_query = "select * from payment where C_ID = $id and S_ID = $_SESSION[Id]";
+$rs = mysqli_query($conn,$check_query);
+$numRow = mysqli_num_rows($rs);
+//echo $numRow;
+
+
+
 $course_query = "select * from course where C_ID = $id ";
 $rs = mysqli_query($conn, $course_query);
 $row = mysqli_fetch_array($rs);
 
-$C_name = $row["C_Name"];
-$C_des = $row["C_Des"];
+$Cs_des =  $row['C_Des'];
+$Cs_name =  $row['C_Name'];
+
+
 $C_auth = $row["C_Author"];
+
+$teacher_query = "select * from teacher where T_ID = $C_auth ";
+$rs1 = mysqli_query($conn, $teacher_query);
+$row1 = mysqli_fetch_array($rs1);
+
+$C_des =  $row1['T_Des'];
+$C_name =  $row1['T_Name'];
+$C_image =  $row1['T_image'];
+$C_type =  $row1['T_Type'];
+
 ?>
 <!doctype html>
 <html class="no-js" lang="zxx">
@@ -76,7 +97,7 @@ $C_auth = $row["C_Author"];
                             <div class="header-contact-info d-flex">
                                 <div class="header-contact header-contact-phone">
                                     <span class="ti-headphone"></span>
-                                    <p class="phone-number"><?php echo $_SESSION['FName']."  ".$_SESSION['LName']; ?></p>
+                                    <p class="phone-number"><?php echo $_SESSION['FName'] . "  " . $_SESSION['LName']; ?></p>
                                 </div>
                                 <div class="header-contact header-contact-email">
                                     <span class="ti-email"></span>
@@ -125,17 +146,25 @@ $C_auth = $row["C_Author"];
                                         </li>
 
                                         <li>
-                                            <a href="course_01.php">Courses</a>
-
+                                            <a href="">Courses</a>
+                                            <ul class="submenu">
+                                                <li>
+                                                    <a href="course_01.php">All Courses</a>
+                                                </li>
+                                                <li>
+                                                    <a href="Mycourse.php">My Courses</a>
+                                                </li>
+                                                
+                                            </ul>
                                         </li>
 
                                         <li>
-                                           <a href="contact_us.php">Feedbacks</a>
+                                            <a href="contact_us.php">Feedbacks</a>
                                         </li>
-                                     
+
                                         <li>
                                             <form method="post">
-                                                
+
                                                 <button name="sign" class="button_design" type="submit">SignOut</button>
                                             </form>
                                         </li>
@@ -187,10 +216,11 @@ $C_auth = $row["C_Author"];
                         </div>
                         <div class="single-course-details white-bg">
                             <div class="course-details-title mb-20">
-                                <h1><?php echo $C_name ?></h1>
+                                <h1><?php echo $Cs_name ?></h1>
                                 <form style="margin-top: 15px;" method="post">
                                     <button id="enrollbtn" name="enroll" type="submit" class="btn btn-success">Enroll </button>
                                 </form>
+                                <h1 id ="okenroll" style="color:black; visibility: collapse" ><span class="badge bg-success">Enrolled</span></h1>
                             </div>
                             <div class="course-details-tabs">
                                 <ul class="nav nav-pills" id="pills-tab" role="tablist">
@@ -212,7 +242,7 @@ $C_auth = $row["C_Author"];
                                 <div class="tab-content" id="pills-tabContent">
                                     <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                                         <div class="course-details-overview-top">
-                                            <p style="height: 240px;" class="course-details-overview-para"><?php echo $C_des ?></p>
+                                            <p style="height: 240px;" class="course-details-overview-para"><?php echo $Cs_des ?></p>
 
                                         </div>
                                         <div class="course-details-overview-bottom d-flex justify-content-between mt-25">
@@ -443,23 +473,24 @@ $C_auth = $row["C_Author"];
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- cse course teacher -->
                                     <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
                                         <div class="course-details-adivisor-info mt-30">
                                             <div class="course-details-adivisor-wrapper">
                                                 <div class="course-details-adivisor-inner d-flex">
                                                     <div class="adivisor-thumb">
-                                                        <img src="img/courses/advisors_thumb.jpg" alt="">
+                                                        <img style="height:200px; width:200px" src="image/<?php echo $C_image ?>" alt="">
                                                     </div>
                                                     <div class="adivisor-text white-bg">
                                                         <div class="adivisor-text-heading d-flex mb-10">
                                                             <div class="adivisor-text-title">
                                                                 <!-- C_auth -->
-                                                                <h4><?php echo  $C_auth ?></h4>
-                                                                <span>CSE Teacher</span>
+                                                                <h4><?php echo  $C_name ?></h4>
+                                                                <span><?php echo  $C_type ?></span>
                                                             </div>
                                                         </div>
                                                         <div class="adivisor-para">
-                                                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusa dolore mque laudantium totam rem aperiam eaqipsa quae ab illo inventore veritatvolup tatem quia voluptas sit aspernatur aut odit aut fugit sed quia conseque.</p>
+                                                            <p><?php echo  $C_des ?></p>
                                                         </div>
                                                         <div class="advisors-social-icon-list">
                                                             <ul>
@@ -974,23 +1005,31 @@ $C_auth = $row["C_Author"];
 <?php
 
 if (isset($_POST["sign"])) {
-    ?>
-        session_destroy();
-        <script type="text/javascript">
-            window.location.href = "login.php";
-        </script>
-    <?php
-    }
-    
-if (!isset($id)) {
-     echo "df";
+?>
+    session_destroy();
+    <script type="text/javascript">
+        window.location.href = "login.php";
+    </script>
+<?php
+}
+
+if ($numRow>=1) {
+    echo "df";
 ?>
 
     <script type="text/javascript">
+        console.log("d");
+        document.getElementById("enrollbtn").style.display = "none";
+        document.getElementById("okenroll").style.visibility = "visible";
+       
+    </script>
+<?php
+}
 
-                console.log("d");
-            document.getElementById("enrollbtn").style.display = "none";
-        
+if (isset($_POST['enroll'])) {
+?>
+    <script type="text/javascript">
+        window.location.href="shopping.php";
     </script>
 <?php
 }

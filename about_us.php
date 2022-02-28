@@ -34,22 +34,23 @@ include "dbConnection.php";
 </head>
 
 <style>
+    .button_design {
+        border: none;
+        /* border-radius: 5px; */
+        height: 35px;
+        background-color: rgb(255, 255, 255);
 
-    .button_design{
-           border: none;
-           /* border-radius: 5px; */
-           height: 35px;
-           background-color: rgb(255, 255, 255);
-           
-           margin: 5px;
-           
+        margin: 5px;
+
     }
-    .button_design:hover{
-          background-color: rgb(251, 255, 16);
-          box-shadow: 5px 10px rgb(99, 91, 22);
-          border-radius: 5px;
+
+    .button_design:hover {
+        background-color: rgb(251, 255, 16);
+        box-shadow: 5px 10px rgb(99, 91, 22);
+        border-radius: 5px;
     }
 </style>
+
 <body>
     <!--[if lte IE 9]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
@@ -67,7 +68,7 @@ include "dbConnection.php";
                             <div class="header-contact-info d-flex">
                                 <div class="header-contact header-contact-phone">
                                     <span class="ti-headphone"></span>
-                                    <p class="phone-number"><?php echo $_SESSION['FName']."  ".$_SESSION['LName']; ?></p>
+                                    <p class="phone-number"><?php echo $_SESSION['FName'] . "  " . $_SESSION['LName']; ?></p>
                                 </div>
                                 <div class="header-contact header-contact-email">
                                     <span class="ti-email"></span>
@@ -101,35 +102,43 @@ include "dbConnection.php";
                         </div>
                         <div class="col-xl-10 col-lg-10 col-md-6 col-6">
                             <div class="header-bottom-icon f-right">
-                             
+
                             </div>
                             <div class="main-menu f-right">
                                 <nav id="mobile-menu" style="display: block;">
                                     <ul>
                                         <li>
                                             <a href="index_demo.php">Home</a>
-                                          
+
                                         </li>
                                         <li>
                                             <a href="about_us.php">About Us</a>
-                                        
+
                                         </li>
-                                    
+
                                         <li>
-                                            <a href="course_01.php">Courses</a>
-                                           
-                                        </li>
-                                     
-                                        <li>
-                                           <a href="contact_us.php">Feedbacks</a>
-                                        </li>
-                                        <li>
-                                        <form method="post">
+                                            <a href="">Courses</a>
+                                            <ul class="submenu">
+                                                <li>
+                                                    <a href="course_01.php">All Courses</a>
+                                                </li>
+                                                <li>
+                                                    <a href="Mycourse.php">My Courses</a>
+                                                </li>
                                                 
+                                            </ul>
+                                        </li>
+
+                                        <li>
+                                            <a href="contact_us.php">Feedbacks</a>
+                                        </li>
+                                        <li>
+                                            <form method="post">
+
                                                 <button name="sign" class="button_design" type="submit">SignOut</button>
                                             </form>
                                         </li>
-                                      
+
 
                                     </ul>
                                 </nav>
@@ -482,7 +491,7 @@ include "dbConnection.php";
 
     <!-- brand end -->
     <!-- subscribe start -->
-   
+
     <!-- subscribe end -->
     <!-- footer start -->
     <footer id="Contact">
@@ -636,12 +645,13 @@ include "dbConnection.php";
 </body>
 <?php
 if (isset($_POST["sign"])) {
-    ?>
-        session_destroy();
-        <script type="text/javascript">
-            window.location.href = "login.php";
-        </script>
-    <?php
-    }
-    ?>
+?>
+    session_destroy();
+    <script type="text/javascript">
+        window.location.href = "login.php";
+    </script>
+<?php
+}
+?>
+
 </html>

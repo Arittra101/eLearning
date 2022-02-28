@@ -116,16 +116,8 @@ session_start();
                                         </li>
 
                                         <li>
-                                            <a href="">Courses</a>
-                                            <ul class="submenu">
-                                                <li>
-                                                    <a href="course_01.php">All Courses</a>
-                                                </li>
-                                                <li>
-                                                    <a href="Mycourse.php">My Courses</a>
-                                                </li>
-                                                
-                                            </ul>
+                                            <a href="course_01.php">Courses</a>
+
                                         </li>
 
                                         <li>
@@ -160,7 +152,7 @@ session_start();
                     <div class="row">
                         <div class="col-xl-12">
                             <div class="slider-content slider-content-breadcrumb text-center">
-                                <h1 class="white-color f-700">Our Course</h1>
+                                <h1 class="white-color f-700">My Courses</h1>
                             </div>
                         </div>
                     </div>
@@ -177,7 +169,7 @@ session_start();
 
                     <?php
 
-                    $course_query = "Select * from course";
+                    $course_query = "Select course.C_Name,course.C_Des,course.C_ID,course.C_OPrice FROM course INNER JOIN payment ON course.C_ID = payment.C_ID WHERE payment.S_ID=$_SESSION[Id]";
                     $rs = mysqli_query($conn, $course_query);
                     while ($row = mysqli_fetch_array($rs)) {
                     ?>
@@ -193,7 +185,7 @@ session_start();
                                     <div class="courses-content">
                                         <div class="courses-category-name">
                                             <span>
-                                               <?php echo "Price $row[C_OPrice]"." "."40% Discount"?>
+                                               <?php echo "Price" . $row["C_OPrice"]." "."40% Discount"?>
                                             </span>
                                         </div>
                                         <div class="courses-heading">

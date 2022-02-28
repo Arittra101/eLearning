@@ -15,7 +15,7 @@
     <title>Document</title>
 </head>
 
-<body>
+<body style="background-image: url(img/slider/slider_bg_002.jpg);">
 
 
 
@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
 
 
-    <div class="container my-4">
+    <div class="container my-4" >
 
 
 

@@ -1,5 +1,7 @@
 <?php
-include "dbConnection.php"
+include "dbConnection.php";
+
+
 ?>
 
 <!doctype html>
@@ -34,9 +36,36 @@ include "dbConnection.php"
                 <label for="exampleInputPassword1">Course Description</label>
                 <input name="C_Des" style="height: 50px;width:95%;" type="text" class="form-control" id="exampleInputPassword1">
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label for="exampleInputPassword1">Author</label>
                 <input name="C_Author" style="height: 50px;width:95%;" type="text" class="form-control" id="exampleInputPassword1">
+            </div> -->
+            <div class="form-group">
+                <div class="col-auto my-1">
+                    <label class="mr-sm-2" for="inlineFormCustomSelect">Preference</label>
+                    <select name="C_Author" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                    <option selected>Choose...</option>
+                    <?php 
+                    $query = "Select * from teacher";
+                    $rs =  mysqli_query($conn,$query);
+                    while($row =  mysqli_fetch_array($rs))
+                    {
+                        ?>
+                        <option value="<?php echo  $row['T_ID'] ?>"><?php echo  $row['T_Name'] ?></option>
+                       
+                        
+                        <?php
+                    }
+                    
+                    ?>
+                    </select>
+                    <!-- <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                        <option selected>Choose...</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select> -->
+                </div>
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword1">Course Orginal Price</label>
@@ -100,7 +129,7 @@ include "dbConnection.php"
         // $C_SPrice = $_POST["C_SPrice"];  
 
 
-        $target = "image/".basename($_FILES["image"]["name"]);
+        $target = "image/" . basename($_FILES["image"]["name"]);
         $imageFIle = $_FILES["image"]["name"];
         echo  $imageFIle;
 
@@ -123,7 +152,7 @@ include "dbConnection.php"
         <?php
         }
 
-        if(move_uploaded_file($_FILES["image"]["tmp_name"],$target)){
+        if (move_uploaded_file($_FILES["image"]["tmp_name"], $target)) {
             echo "Image go to target";
         }
     } else {

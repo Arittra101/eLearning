@@ -17,6 +17,11 @@ $getres = mysqli_query($conn, $total_course_query);
 
 $totalstudent = mysqli_num_rows($getres);
 
+$total_Instructor_query = "SELECT * FROM `teacher` ";
+
+$getins = mysqli_query($conn, $total_Instructor_query);
+$totalinstructor = mysqli_num_rows($getins);
+
 
 // session_destroy();
 ?>
@@ -133,8 +138,16 @@ $totalstudent = mysqli_num_rows($getres);
                                         </li>
 
                                         <li>
-                                            <a href="course_01.php">Courses</a>
-
+                                            <a href="">Courses</a>
+                                            <ul class="submenu">
+                                                <li>
+                                                    <a href="course_01.php">All Courses</a>
+                                                </li>
+                                                <li>
+                                                    <a href="Mycourse.php">My Courses</a>
+                                                </li>
+                                                
+                                            </ul>
                                         </li>
 
                                         <li>
@@ -358,7 +371,7 @@ $totalstudent = mysqli_num_rows($getres);
                 <div class="row">
 
                     <?php
-                    $query = "Select * from teacher";
+                    $query = "Select * from teacher limit 4";
                     $rs = mysqli_query($conn, $query);  //return obj
                     while ($row = mysqli_fetch_array($rs)) {
                     ?>
@@ -531,8 +544,8 @@ $totalstudent = mysqli_num_rows($getres);
                 <div class="col-xl-4 col-lg-4 col-md-4">
                     <div class="couter-wrapper mb-30 text-center">
                         <img src="img/counter/counter_icon4.png" alt="">
-                        <span class="counter">354</span>
-                        <h3>Course Instructors</h3>
+                        <span class="counter"><?php echo $totalinstructor ?></span>
+                        <h3>Total Instructors </h3>
                     </div>
                 </div>
             </div>
