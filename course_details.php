@@ -2,12 +2,13 @@
 
 include "dbConnection.php";
 session_start();
+$inc = 1;
 $id = $_GET["id"];          //course Id
 $_SESSION['C_ID'] = $id;  //course Id to session
 // echo $id;
 
 $check_query = "select * from payment where C_ID = $id and S_ID = $_SESSION[Id]";
-$rs = mysqli_query($conn,$check_query);
+$rs = mysqli_query($conn, $check_query);
 $numRow = mysqli_num_rows($rs);
 //echo $numRow;
 
@@ -154,7 +155,7 @@ $C_type =  $row1['T_Type'];
                                                 <li>
                                                     <a href="Mycourse.php">My Courses</a>
                                                 </li>
-                                                
+
                                             </ul>
                                         </li>
 
@@ -220,7 +221,7 @@ $C_type =  $row1['T_Type'];
                                 <form style="margin-top: 15px;" method="post">
                                     <button id="enrollbtn" name="enroll" type="submit" class="btn btn-success">Enroll </button>
                                 </form>
-                                <h1 id ="okenroll" style="color:black; visibility: collapse" ><span class="badge bg-success">Enrolled</span></h1>
+                                <h1 id="okenroll" style="color:black; visibility: collapse"><span class="badge bg-success">Enrolled</span></h1>
                             </div>
                             <div class="course-details-tabs">
                                 <ul class="nav nav-pills" id="pills-tab" role="tablist">
@@ -271,206 +272,49 @@ $C_type =  $row1['T_Type'];
                                     <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                                         <p class="course-details-curiculum-para">But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system and expoune.</p>
                                         <div class="curiculum-lecture-details">
-                                            <div class="single-curiculum-lecture table-responsive mt-10">
-                                                <table class="table">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>
-                                                                <span class="ti-book"></span>
-                                                                <span class="chapter-name">Lecture 1.1</span>
-                                                            </td>
-                                                            <td>
-                                                                <span class="ti-timer "></span>
-                                                                <span class="chapter-name">Time : 30 Minute</span>
-                                                            </td>
-                                                            <td>
-                                                                <span class="ti-user"></span>
-                                                                <span class="chapter-name">Seat : 25</span>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            <div class="single-curiculum-lecture table-responsive mt-10">
-                                                <table class="table">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>
-                                                                <span class="ti-book"></span>
-                                                                <span class="chapter-name">Lecture 1.2</span>
-                                                            </td>
-                                                            <td>
-                                                                <span class="ti-timer "></span>
-                                                                <span class="chapter-name">Time : 20 Minute</span>
-                                                            </td>
-                                                            <td>
-                                                                <span class="ti-user"></span>
-                                                                <span class="chapter-name">Seat : 25</span>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            <div class="single-curiculum-lecture table-responsive mt-10">
-                                                <table class="table">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>
-                                                                <span class="ti-book"></span>
-                                                                <span class="chapter-name">Lecture 1.2</span>
-                                                            </td>
-                                                            <td>
-                                                                <span class="ti-timer "></span>
-                                                                <span class="chapter-name">Time : 20 Minute</span>
-                                                            </td>
-                                                            <td>
-                                                                <span class="ti-user"></span>
-                                                                <span class="chapter-name">Seat : 25</span>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            <div class="single-curiculum-lecture table-responsive mt-10">
-                                                <table class="table">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>
-                                                                <span class="ti-book"></span>
-                                                                <span class="chapter-name">Lecture 1.2</span>
-                                                            </td>
-                                                            <td>
-                                                                <span class="ti-timer "></span>
-                                                                <span class="chapter-name">Time : 20 Minute</span>
-                                                            </td>
-                                                            <td>
-                                                                <span class="ti-user"></span>
-                                                                <span class="chapter-name">Seat : 25</span>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            <div class="single-curiculum-lecture table-responsive mt-10">
-                                                <table class="table">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>
-                                                                <span class="ti-book"></span>
-                                                                <span class="chapter-name">Lecture 1.2</span>
-                                                            </td>
-                                                            <td>
-                                                                <span class="ti-timer "></span>
-                                                                <span class="chapter-name">Time : 20 Minute</span>
-                                                            </td>
-                                                            <td>
-                                                                <span class="ti-user"></span>
-                                                                <span class="chapter-name">Seat : 25</span>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            <div class="single-curiculum-lecture table-responsive mt-10">
-                                                <table class="table">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>
-                                                                <span class="ti-book"></span>
-                                                                <span class="chapter-name">Lecture 1.2</span>
-                                                            </td>
-                                                            <td>
-                                                                <span class="ti-timer "></span>
-                                                                <span class="chapter-name">Time : 20 Minute</span>
-                                                            </td>
-                                                            <td>
-                                                                <span class="ti-user"></span>
-                                                                <span class="chapter-name">Seat : 25</span>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            <div class="single-curiculum-lecture table-responsive mt-10">
-                                                <table class="table">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>
-                                                                <span class="ti-book"></span>
-                                                                <span class="chapter-name">Lecture 1.2</span>
-                                                            </td>
-                                                            <td>
-                                                                <span class="ti-timer "></span>
-                                                                <span class="chapter-name">Time : 20 Minute</span>
-                                                            </td>
-                                                            <td>
-                                                                <span class="ti-user"></span>
-                                                                <span class="chapter-name">Seat : 25</span>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            <div class="single-curiculum-lecture table-responsive mt-10">
-                                                <table class="table">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>
-                                                                <span class="ti-book"></span>
-                                                                <span class="chapter-name">Lecture 1.2</span>
-                                                            </td>
-                                                            <td>
-                                                                <span class="ti-timer "></span>
-                                                                <span class="chapter-name">Time : 20 Minute</span>
-                                                            </td>
-                                                            <td>
-                                                                <span class="ti-user"></span>
-                                                                <span class="chapter-name">Seat : 25</span>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            <div class="single-curiculum-lecture table-responsive mt-10">
-                                                <table class="table">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>
-                                                                <span class="ti-book"></span>
-                                                                <span class="chapter-name">Lecture 1.2</span>
-                                                            </td>
-                                                            <td>
-                                                                <span class="ti-timer "></span>
-                                                                <span class="chapter-name">Time : 20 Minute</span>
-                                                            </td>
-                                                            <td>
-                                                                <span class="ti-user"></span>
-                                                                <span class="chapter-name">Seat : 25</span>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            <div class="single-curiculum-lecture table-responsive mt-10">
-                                                <table class="table">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>
-                                                                <span class="ti-book"></span>
-                                                                <span class="chapter-name">Lecture 1.2</span>
-                                                            </td>
-                                                            <td>
-                                                                <span class="ti-timer "></span>
-                                                                <span class="chapter-name">Time : 20 Minute</span>
-                                                            </td>
-                                                            <td>
-                                                                <span class="ti-user"></span>
-                                                                <span class="chapter-name">Seat : 25</span>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
+
+                                            <?php
+
+                                            $query = "select * from lesson where C_ID = $id";
+                                            $rs = mysqli_query($conn, $query);
+                                            while ($row = mysqli_fetch_array($rs)) {
+                                            ?>
+                                                <div class="single-curiculum-lecture table-responsive mt-10">
+                                                    <table class="table">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    <span class="ti-book"></span>
+                                                                    <span class="chapter-name">Lesson <?php echo $inc++; ?></span>
+                                                                </td>
+                                                                <td style="text-align: left;">
+                                                                    <span class="ti-timer "></span>
+                                                                    <span class="chapter-name"><?php echo $row['Lesson_Name'] ?></span>
+                                                                </td>
+                                                                <td>
+                                                                    <span class="ti-user"></span>
+
+                                                                    <!-- <span class="chapter-name"> <a class="popup-video" href="<?php echo $row['Lecture_Video'] ?>">Lecture Video</a></span> -->
+                                                                    <span class="chapter-name"> <a class="popup-video" href="<?php echo "https://www.youtube.com/watch?v=".$row['Lecture_Video'] ?>">Lecture Video</a></span>
+                                                                    <!-- <span class="chapter-name"> <a class="popup-video" href="https://www.youtube.com/watch?v=T04zRoLdGe4">Lecture Video</a></span> -->
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                            <?php
+                                            }
+
+                                            ?>
+
+
+
+
+
+
+
+
                                         </div>
                                     </div>
                                     <!-- cse course teacher -->
@@ -1013,7 +857,7 @@ if (isset($_POST["sign"])) {
 <?php
 }
 
-if ($numRow>=1) {
+if ($numRow >= 1) {
     echo "df";
 ?>
 
@@ -1021,7 +865,6 @@ if ($numRow>=1) {
         console.log("d");
         document.getElementById("enrollbtn").style.display = "none";
         document.getElementById("okenroll").style.visibility = "visible";
-       
     </script>
 <?php
 }
@@ -1029,7 +872,7 @@ if ($numRow>=1) {
 if (isset($_POST['enroll'])) {
 ?>
     <script type="text/javascript">
-        window.location.href="shopping.php";
+        window.location.href = "shopping.php";
     </script>
 <?php
 }

@@ -1,7 +1,10 @@
 <?php
 
 include "dbConnection.php";
-$id = $_GET["id"];
+session_start();
+$id = $_GET["id"];  
+
+$_SESSION['Course_ID']  = $id;
 echo $id;
 $rs = mysqli_query($conn, "Select * from course where C_ID = $id");
 $C_ID = "";
@@ -29,6 +32,7 @@ echo $C_Name;
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="admin_course_style.css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <title>Document</title>
@@ -105,6 +109,7 @@ echo $C_Name;
 
     </div>
     <!--container end.//-->
+    <a class = "float_button" href="add_lesson.php">+</a>
 
 </body>
 
